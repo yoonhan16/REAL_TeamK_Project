@@ -19,6 +19,8 @@ EBTNodeResult::Type UBTTask_ChaseBasic::ExecuteTask(UBehaviorTreeComponent& Owne
 {
 	EBTNodeResult::Type Result = Super::ExecuteTask(OwnerComp, NodeMemory);
 
+	UE_LOG(LogTemp, Warning, TEXT("Start Chase : Called"));
+
 	APawn* ControllingPawn = OwnerComp.GetAIOwner()->GetPawn();
 	if (nullptr == ControllingPawn)
 	{
@@ -48,11 +50,7 @@ EBTNodeResult::Type UBTTask_ChaseBasic::ExecuteTask(UBehaviorTreeComponent& Owne
 		return EBTNodeResult::Failed;
 	}
 
-	//FVector LookVector = PlayerCharactor->GetActorLocation() - Basic_Zombie->GetActorLocation();
-	//LookVector.Z = 0.0f;
-	//FRotator PlayerCharactorRot = FRotationMatrix::MakeFromX(LookVector).Rotator();
-	//Basic_Zombie->SetActorRotation(FMath::RInterpTo(Basic_Zombie->GetActorLocation(), PlayerCharactorRot, GetWorld()->GetDeltaSeconds(), 2.0f));
-
+	
 
 
 

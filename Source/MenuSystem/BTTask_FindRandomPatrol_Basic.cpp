@@ -16,7 +16,9 @@ UBTTask_FindRandomPatrol_Basic::UBTTask_FindRandomPatrol_Basic()
 
 EBTNodeResult::Type UBTTask_FindRandomPatrol_Basic::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
+	EBTNodeResult::Type Result = Super::ExecuteTask(OwnerComp, NodeMemory);
 
+	UE_LOG(LogTemp, Warning, TEXT("Start patrol : Called"));
 
 	auto ControllingPawn = OwnerComp.GetAIOwner()->GetPawn();
 	if (nullptr == ControllingPawn)
@@ -43,6 +45,7 @@ EBTNodeResult::Type UBTTask_FindRandomPatrol_Basic::ExecuteTask(UBehaviorTreeCom
 	FNavLocation NextPatrol;
 	if (NavSystem->GetRandomPointInNavigableRadius(FVector::ZeroVector, 2000.0f, NextPatrol))
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Found Vaild Location : Called"));
 		OwnerComp.GetBlackboardComponent()->SetValueAsVector(AAi_Controller_BasicZombie::Key_PatrolLocation_Target, NextPatrol.Location);
 		return EBTNodeResult::Succeeded;
 	}

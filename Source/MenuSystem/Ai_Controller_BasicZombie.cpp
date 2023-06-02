@@ -78,6 +78,8 @@ void AAi_Controller_BasicZombie::OnPerception(AActor* Actor, FAIStimulus Stimulu
 	}
 	else
 	{
+		UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter Found : Called"));
+
 		SetFocus(Stimulus.WasSuccessfullySensed() ? PlayerCharacter : nullptr);
 		if (Stimulus.WasSuccessfullySensed() != NULL)
 		{
@@ -90,12 +92,12 @@ void AAi_Controller_BasicZombie::OnPerception(AActor* Actor, FAIStimulus Stimulu
 		}
 		else
 		{
+
 			BlackboardComp->SetValueAsBool(Key_HasLineOfSight, false);
 			BlackboardComp->SetValueAsObject(Key_EnemyActor, nullptr);
+
 		}
 	}
-
-
 }
 
 
@@ -116,6 +118,7 @@ void AAi_Controller_BasicZombie::OnPossess(APawn* InPawn)
 
 
 }
+
 
 
 

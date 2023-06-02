@@ -47,6 +47,7 @@ public:
 
 	virtual void OnPossess(APawn* InPawn) override;
 
+
 private:
 
 	UPROPERTY()
