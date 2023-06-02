@@ -2,6 +2,7 @@
 
 
 #include "BP_Basic_Zombie.h"
+#include "MenuSystemCharacter.h"
 #include "Ai_Controller_BasicZombie.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/StaticMeshComponent.h"
@@ -55,11 +56,13 @@ ABP_Basic_Zombie::ABP_Basic_Zombie()
 
 void ABP_Basic_Zombie::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	AMenuSystemCharacter* PlayerCharacter = Cast<AMenuSystemCharacter>(OtherActor);
+
 	if (OtherActor && (OtherActor != this) && OtherComp)
 	{
 		HasOverlapped = true;
 
-		if (ActorHasTag("Player") && AttackTimer >= 0.8f)
+		if (PlayerCharacter->ActorHasTag("Player") && AttackTimer >= 0.8f)
 		{
 			UGameplayStatics::ApplyDamage(OtherActor, 2.0f, GetController(), nullptr, NULL);
 
@@ -71,6 +74,8 @@ void ABP_Basic_Zombie::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActo
 
 void ABP_Basic_Zombie::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+	AMenuSystemCharacter* PlayerCharacter = Cast<AMenuSystemCharacter>(OtherActor);
+
 	if (OtherActor && (OtherActor != this) && OtherComp)
 	{
 		HasOverlapped = false;
@@ -88,6 +93,8 @@ void ABP_Basic_Zombie::BeginPlay()
 
 float ABP_Basic_Zombie::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
+	AMenuSystemCharacter* PlayerCharacter = Cast<AMenuSystemCharacter>(DamageCauser);
+
 	Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
 
 	//UE_LOG(LogTemp, Warning, TEXT("ABP_Basic_Zombie::TakeDamage : Called"));
