@@ -6,6 +6,7 @@
 #include "AIController.h"
 #include "BP_Basic_Zombie.h"
 #include "Perception/AIPerceptionTypes.h"
+#include "perception/AIPerceptionComponent.h"
 #include "Ai_Controller_BasicZombie.generated.h"
 
 
@@ -31,7 +32,7 @@ public:
 
 	AAi_Controller_BasicZombie(const FObjectInitializer& ObjectInitializer);
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite)
 	ABP_Basic_Zombie* BasicZombie;
 
 
@@ -44,6 +45,8 @@ public:
 	static const FName Key_PatrolLocation_Target;
 
 	class UAISenseConfig_Sight* Sight;
+	class UAISenseConfig_Damage* Damage;
+	class UAISenseConfig_Hearing* Hearing;
 
 	virtual void OnPossess(APawn* InPawn) override;
 

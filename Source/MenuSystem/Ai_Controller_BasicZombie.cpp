@@ -11,9 +11,13 @@
 #include "BehaviorTree/BlackboardData.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Perception/AISenseConfig_Sight.h"
+#include "Perception/AISenseConfig_Damage.h"
+#include "Perception/AISenseConfig_Hearing.h"
 #include "Perception/AIPerceptionStimuliSourceComponent.h"
 #include "Perception/AIPerceptionComponent.h"
 #include "Runtime/AIModule/Classes/Perception/AISenseConfig_Sight.h"
+#include "Runtime/AIModule/Classes/Perception/AISenseConfig_Damage.h"
+#include "Runtime/AIModule/Classes/Perception/AISenseConfig_Hearing.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include "Runtime/Engine/Classes/Engine/World.h"
 #include "EngineGlobals.h"
@@ -29,11 +33,7 @@ const FName AAi_Controller_BasicZombie::Key_PatrolLocation_Target(TEXT("PatrolLo
 void AAi_Controller_BasicZombie::BeginPlay()
 {
 	Super::BeginPlay();
-	ABP_Basic_Zombie* Enemy = Cast<ABP_Basic_Zombie>(GetPawn());
-	if (Enemy)
-	{
-		BasicZombie = Enemy;
-	}
+	
 }
 
 AAi_Controller_BasicZombie::AAi_Controller_BasicZombie(const FObjectInitializer& ObjectInitializer)
@@ -42,7 +42,7 @@ AAi_Controller_BasicZombie::AAi_Controller_BasicZombie(const FObjectInitializer&
 
 	Sight = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("Sight Config"));
 
-	Sight->SightRadius = 3000.0f;
+	Sight->SightRadius = 1000.0f;
 	Sight->LoseSightRadius = Sight->SightRadius + 500.0f;
 	Sight->PeripheralVisionAngleDegrees = 80.0f;
 	Sight->DetectionByAffiliation.bDetectEnemies = true;
@@ -72,7 +72,8 @@ void AAi_Controller_BasicZombie::OnPerception(AActor* Actor, FAIStimulus Stimulu
 	if (PlayerCharacter == nullptr)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter Not Found : Called"));
-
+		BlackboardComp->SetValueAsBool(Key_HasLineOfSight, false);
+		BlackboardComp->SetValueAsObject(Key_EnemyActor, nullptr);
 
 		return;
 	}

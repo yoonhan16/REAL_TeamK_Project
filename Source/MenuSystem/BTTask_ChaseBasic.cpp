@@ -17,7 +17,7 @@ UBTTask_ChaseBasic::UBTTask_ChaseBasic()
 
 EBTNodeResult::Type UBTTask_ChaseBasic::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	EBTNodeResult::Type Result = Super::ExecuteTask(OwnerComp, NodeMemory);
+	//EBTNodeResult::Type Result = Super::ExecuteTask(OwnerComp, NodeMemory);
 
 	UE_LOG(LogTemp, Warning, TEXT("Start Chase : Called"));
 
@@ -28,14 +28,7 @@ EBTNodeResult::Type UBTTask_ChaseBasic::ExecuteTask(UBehaviorTreeComponent& Owne
 	}
 
 	ABP_Basic_Zombie* Basic_Zombie = Cast<ABP_Basic_Zombie>(OwnerComp.GetAIOwner()->GetPawn());
-	if (nullptr == Basic_Zombie)
-	{
-		return EBTNodeResult::Failed;
-	}
-	else
-	{
-		Basic_Zombie->UpdateSpeed(700.0f);
-	}
+	Basic_Zombie->UpdateSpeed(700.0f);
 	
 	AMenuSystemCharacter* PlayerCharactor = Cast<AMenuSystemCharacter>(OwnerComp.GetBlackboardComponent()->GetValueAsObject(AAi_Controller_BasicZombie::Key_EnemyActor));
 	if (nullptr == PlayerCharactor)

@@ -37,25 +37,17 @@ EBTNodeResult::Type UBTTask_FindRandomPatrol_Basic::ExecuteTask(UBehaviorTreeCom
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Cannot Find NavMesh : Called"));
 
-
 		return EBTNodeResult::Failed;
 	}
 
 	FVector Origin = OwnerComp.GetBlackboardComponent()->GetValueAsVector(AAi_Controller_BasicZombie::Key_PatrolLocation_Home);
 	FNavLocation NextPatrol;
-	if (NavSystem->GetRandomPointInNavigableRadius(FVector::ZeroVector, 2000.0f, NextPatrol))
+	if (NavSystem->GetRandomPointInNavigableRadius(Origin, 2000.0f, NextPatrol))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Found Vaild Location : Called"));
 		OwnerComp.GetBlackboardComponent()->SetValueAsVector(AAi_Controller_BasicZombie::Key_PatrolLocation_Target, NextPatrol.Location);
 		return EBTNodeResult::Succeeded;
 	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Cannot Find Vaild Location : Called"));
-
-		return EBTNodeResult::Failed;
-	}
-
 
 	return EBTNodeResult::Failed;
 }

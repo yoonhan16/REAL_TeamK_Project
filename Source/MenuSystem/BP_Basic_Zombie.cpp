@@ -12,7 +12,7 @@
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "Runtime/Engine/Public/TimerManager.h"
 
-void ABP_Basic_Zombie::GetLifetimeReplicatedProps(TArray<FLifetimeProperty >& OutLifetimeProps) const
+void ABP_Basic_Zombie::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 }
@@ -31,7 +31,6 @@ ABP_Basic_Zombie::ABP_Basic_Zombie()
 	PrimaryActorTick.bCanEverTick = true;
 
 	Body = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BODY"));
-	//RootComponent = USkeletalMeshComponent::SkeletalMeshComponent;
 	Body->SetupAttachment(GetMesh());
 
 	LeftArm = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("LeftArm"));
@@ -58,13 +57,14 @@ void ABP_Basic_Zombie::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActo
 {
 	AMenuSystemCharacter* PlayerCharacter = Cast<AMenuSystemCharacter>(OtherActor);
 
-	if (OtherActor && (OtherActor != this) && OtherComp)
+	if (OtherActor != this)
 	{
 		HasOverlapped = true;
+		UE_LOG(LogTemp, Warning, TEXT("Begin Overlap : Called"));
 
-		if (PlayerCharacter->ActorHasTag("Player") && AttackTimer >= 0.8f)
+		while (AttackTimer >= 0.8f)
 		{
-			UGameplayStatics::ApplyDamage(OtherActor, 2.0f, GetController(), nullptr, NULL);
+			UGameplayStatics::ApplyDamage(PlayerCharacter, 3.0f, ABP_Basic_Zombie::GetController(), nullptr, NULL);
 
 			UE_LOG(LogTemp, Warning, TEXT("Damage Applied to Player : Called"));
 		}
@@ -76,9 +76,10 @@ void ABP_Basic_Zombie::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor*
 {
 	AMenuSystemCharacter* PlayerCharacter = Cast<AMenuSystemCharacter>(OtherActor);
 
-	if (OtherActor && (OtherActor != this) && OtherComp)
+	if (OtherActor != this)
 	{
 		HasOverlapped = false;
+		UE_LOG(LogTemp, Warning, TEXT("End Overlap : Called"));
 	}
 }
 
@@ -143,7 +144,7 @@ void ABP_Basic_Zombie::Tick(float DeltaTime)
 	if (HasOverlapped == true)
 	{
 		AttackTimer = AttackTimer + DeltaTime;
-
+		
 		if (AttackTimer >= 0.8f)
 		{
 			AttackTimer = 0;
