@@ -21,6 +21,8 @@ void ABP_Basic_Zombie::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out
 // Sets default values
 ABP_Basic_Zombie::ABP_Basic_Zombie()
 {
+	ActorHasTag("Zombie");
+
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 

@@ -82,7 +82,7 @@ void AAi_Controller_BasicZombie::OnPerception(AActor* Actor, FAIStimulus Stimulu
 		UE_LOG(LogTemp, Warning, TEXT("PlayerCharacter Found : Called"));
 
 		SetFocus(Stimulus.WasSuccessfullySensed() ? PlayerCharacter : nullptr);
-		if (Stimulus.WasSuccessfullySensed() != NULL)
+		if (Stimulus.WasSuccessfullySensed() == true)
 		{
 			BlackboardComp->SetValueAsBool(Key_HasLineOfSight, true);
 

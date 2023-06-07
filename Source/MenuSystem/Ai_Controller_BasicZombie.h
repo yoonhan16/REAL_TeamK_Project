@@ -34,7 +34,7 @@ public:
 
 	UPROPERTY(BlueprintReadWrite)
 	ABP_Basic_Zombie* BasicZombie;
-
+	
 
 	UFUNCTION()
 	void OnPerception(AActor* Actor, FAIStimulus Stimulus);
