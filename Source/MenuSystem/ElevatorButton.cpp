@@ -42,7 +42,7 @@ void AElevatorButton::Tick(float DeltaTime)
 
 }
 
-void AElevatorButton::MyInteract_Implementation()
+void AElevatorButton::Interact()
 {
 	if (bDidTask)
 	{

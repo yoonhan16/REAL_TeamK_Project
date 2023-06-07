@@ -5,4 +5,6 @@
 
 // Add default functionality here for any IInteract_Interface functions that are not pure virtual.
 
-
+void IInteract_Interface::Interact()
+{
+}

@@ -36,7 +36,7 @@ void AGenerator::Tick(float DeltaTime)
 
 }
 
-void AGenerator::MyInteract_Implementation()
+void AGenerator::Interact()
 {
 	GeneratorOn();
 
