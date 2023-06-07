@@ -61,7 +61,7 @@ void ADoor::OnInteract()
 
 }
 
-void ADoor::Interact()
+void ADoor::MyInteract_Implementation()
 {
 	OnInteract();
 

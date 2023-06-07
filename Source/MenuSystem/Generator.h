@@ -38,7 +38,8 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	virtual void Interact() override;
+	//UFUNCTION(BlueprintCallable)
+	virtual void MyInteract_Implementation() override;
 
 	void GeneratorOn();
 

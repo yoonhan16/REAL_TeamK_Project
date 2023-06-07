@@ -106,7 +106,7 @@ void AElevator::Tick(float DeltaTime)
 
 }
 
-void AElevator::Interact()
+void AElevator::MyInteract_Implementation()
 {
 	CloseDoor();
 

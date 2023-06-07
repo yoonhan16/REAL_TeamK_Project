@@ -37,8 +37,8 @@ public:
 	void OnInteract();
 
 	class AJuno_CPPCharacter* Character;
-
-	virtual void Interact() override;
+	//UFUNCTION(BlueprintCallable)
+		virtual void MyInteract_Implementation() override;
 
 private:
 

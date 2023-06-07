@@ -62,7 +62,7 @@ void ADoor2::OnInteract()
 	bIsDoorClosed = !bIsDoorClosed;
 }
 
-void ADoor2::Interact()
+void ADoor2::MyInteract_Implementation()
 {
 	OnInteract();
 }
