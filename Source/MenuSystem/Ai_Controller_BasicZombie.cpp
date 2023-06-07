@@ -85,11 +85,8 @@ void AAi_Controller_BasicZombie::OnPerception(AActor* Actor, FAIStimulus Stimulu
 		if (Stimulus.WasSuccessfullySensed() == true)
 		{
 			BlackboardComp->SetValueAsBool(Key_HasLineOfSight, true);
+			BlackboardComp->SetValueAsObject(Key_EnemyActor, PlayerCharacter);
 
-			if (PlayerCharacter->ActorHasTag("Player"))
-			{
-				BlackboardComp->SetValueAsObject(Key_EnemyActor, PlayerCharacter);
-			}
 		}
 		else
 		{

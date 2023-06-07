@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "GenericTeamAgentInterface.h"
 #include "BP_Basic_Zombie.generated.h"
 
 class UStaticMeshComponent;
@@ -11,7 +12,7 @@ class UBoxComponent;
 
 
 UCLASS()
-class MENUSYSTEM_API ABP_Basic_Zombie : public ACharacter
+class MENUSYSTEM_API ABP_Basic_Zombie : public ACharacter, public IGenericTeamAgentInterface
 {
 	GENERATED_BODY()
 
@@ -56,7 +57,10 @@ public:
 		void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
+	int32 ID = 0;
 
+	virtual FGenericTeamId GetGenericTeamId() const override;
 
 
 private:
@@ -70,6 +74,7 @@ protected:
 
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
+	FGenericTeamId TeamID_Zombie;
 
 public:
 	// Called every frame

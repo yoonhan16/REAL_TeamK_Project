@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "AIController.h"
 #include "BP_Basic_Zombie.h"
+#include "GenericTeamAgentInterface.h"
 #include "Perception/AIPerceptionTypes.h"
 #include "perception/AIPerceptionComponent.h"
 #include "Ai_Controller_BasicZombie.generated.h"
@@ -27,6 +28,8 @@ protected:
 
 	virtual void BeginPlay();
 
+	FGenericTeamId TeamID;
+	virtual ETeamAttitude::Type GetTeamAttitudeTowards(const AActor& Other) const override;
 
 public:
 

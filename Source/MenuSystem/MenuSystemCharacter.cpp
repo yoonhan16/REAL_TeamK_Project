@@ -77,6 +77,11 @@ AMenuSystemCharacter::AMenuSystemCharacter():
 
 }
 
+FGenericTeamId AMenuSystemCharacter::GetGenericTeamId() const
+{
+	return TeamID_Char;
+}
+
 void AMenuSystemCharacter::BeginPlay()
 {
 	// Call the base class  

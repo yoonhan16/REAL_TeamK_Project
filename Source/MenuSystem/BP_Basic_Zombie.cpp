@@ -85,6 +85,11 @@ void ABP_Basic_Zombie::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor*
 	}
 }
 
+FGenericTeamId ABP_Basic_Zombie::GetGenericTeamId() const
+{
+	return TeamID_Zombie;
+}
+
 
 
 // Called when the game starts or when spawned

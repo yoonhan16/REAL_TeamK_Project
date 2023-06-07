@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "GenericTeamAgentInterface.h"
 #include "Interfaces/OnlineSessionInterface.h"
 #include "InputActionValue.h"
 #include "MenuSystemCharacter.generated.h"
@@ -11,7 +12,7 @@
 
 
 UCLASS(config=Game)
-class AMenuSystemCharacter : public ACharacter
+class AMenuSystemCharacter : public ACharacter, public IGenericTeamAgentInterface
 {
 	GENERATED_BODY()
 
@@ -39,9 +40,16 @@ class AMenuSystemCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
 
+
+
+
 public:
 	AMenuSystemCharacter();
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
+	int32 ID = 0;
+
+	virtual FGenericTeamId GetGenericTeamId() const override;
 
 protected:
 
@@ -51,6 +59,7 @@ protected:
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
 			
+	FGenericTeamId TeamID_Char;
 
 protected:
 	// APawn interface
