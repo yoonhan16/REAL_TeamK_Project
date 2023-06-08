@@ -28,8 +28,8 @@ protected:
 
 	virtual void BeginPlay();
 
-	FGenericTeamId TeamID;
-	virtual ETeamAttitude::Type GetTeamAttitudeTowards(const AActor& Other) const override;
+	//FGenericTeamId TeamID;
+	//virtual ETeamAttitude::Type GetTeamAttitudeTowards(const AActor& Other) const override;
 
 public:
 

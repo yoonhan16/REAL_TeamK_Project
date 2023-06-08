@@ -46,10 +46,10 @@ class AMenuSystemCharacter : public ACharacter, public IGenericTeamAgentInterfac
 public:
 	AMenuSystemCharacter();
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
-	int32 ID = 0;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
+	//int32 ID = 0;
 
-	virtual FGenericTeamId GetGenericTeamId() const override;
+	//virtual FGenericTeamId GetGenericTeamId() const override;
 
 protected:
 
@@ -59,7 +59,7 @@ protected:
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
 			
-	FGenericTeamId TeamID_Char;
+	//FGenericTeamId TeamID_Char;
 
 protected:
 	// APawn interface

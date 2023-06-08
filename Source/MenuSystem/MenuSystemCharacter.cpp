@@ -77,10 +77,10 @@ AMenuSystemCharacter::AMenuSystemCharacter():
 
 }
 
-FGenericTeamId AMenuSystemCharacter::GetGenericTeamId() const
-{
-	return TeamID_Char;
-}
+//FGenericTeamId AMenuSystemCharacter::GetGenericTeamId() const
+//{
+//	return TeamID_Char;
+//}
 
 void AMenuSystemCharacter::BeginPlay()
 {

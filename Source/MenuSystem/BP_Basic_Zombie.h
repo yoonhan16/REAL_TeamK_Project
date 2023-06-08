@@ -57,10 +57,10 @@ public:
 		void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
-	int32 ID = 0;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
+	//int32 ID = 0;
 
-	virtual FGenericTeamId GetGenericTeamId() const override;
+	//virtual FGenericTeamId GetGenericTeamId() const override;
 
 
 private:
@@ -74,7 +74,7 @@ protected:
 
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
-	FGenericTeamId TeamID_Zombie;
+	//FGenericTeamId TeamID_Zombie;
 
 public:
 	// Called every frame
